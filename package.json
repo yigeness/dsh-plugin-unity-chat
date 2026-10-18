@@ -1,0 +1,83 @@
+{
+  "name": "dsh-plugin-unity-chat",
+  "version": "1.4.2",
+  "description": "Unity 编辑器对话窗 ↔ DSH 会话桥：自动部署对话脚本、多工程独立聊天、最近工程心跳、MCP 服务启停。",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "icon": "./icon.svg",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    },
+    "compatibility": {
+      "dsh": ">=0.2.0-rc.1"
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.4"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": ">=0.2.0-rc.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24"
+  },
+  "files": [
+    "index.js",
+    "config.js",
+    "chat-file.js",
+    "waker.js",
+    "deploy.js",
+    "heartbeat.js",
+    "mcp.js",
+    "lib",
+    "assets",
+    "locale",
+    "icon.svg",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE",
+    "cordis.patch.yml"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "unity",
+    "unity-editor",
+    "unity3d",
+    "game-development"
+  ],
+  "license": "MIT",
+  "author": "yigeness",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yigeness/dsh-plugin-unity-chat.git"
+  },
+  "homepage": "https://github.com/yigeness/dsh-plugin-unity-chat#readme",
+  "bugs": {
+    "url": "https://github.com/yigeness/dsh-plugin-unity-chat/issues"
+  },
+  "scripts": {
+    "test": "node test/config.test.js && node test/chat-file.test.js && node test/waker.test.js && node test/heartbeat.test.js && node test/security.test.js"
+  }
+}

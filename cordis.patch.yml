@@ -1,0 +1,8 @@
+# Bundle 层：当 profile 的 dsh.profile.bundles 列出 dsh-plugin-unity-chat 时，
+# 由本文件自动插入插件条目（id=unity-chat）。
+# 需要自定义配置时，在 profile 自己的 cordis.patch.yml 中按 id 覆盖（裸条目，无 insert）：
+#   - id: unity-chat
+#     config: { sessionId: ..., projects: [...] }
+- insert:
+    - id: unity-chat
+      name: 'dsh-plugin-unity-chat'

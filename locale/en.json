@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Unity Chat Bridge",
+    "description": "Talk to DSH directly inside the Unity Editor: auto-deployed chat window, per-project chat files, recent-project tracking, and MCP server management."
+  }
+}

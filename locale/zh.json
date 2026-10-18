@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Unity 对话桥",
+    "description": "在 Unity 编辑器里直接与 DSH 对话：自动部署对话窗脚本、多工程独立聊天文件、最近工程记录与 MCP 服务启停。"
+  }
+}
