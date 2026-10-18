@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-unity-chat",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Unity 编辑器对话窗 ↔ DSH 会话桥：自动部署对话脚本、多工程独立聊天、最近工程心跳、MCP 服务启停。",
   "type": "module",
   "main": "index.js",

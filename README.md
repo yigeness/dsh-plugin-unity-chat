@@ -2,7 +2,7 @@
 
 Unity 编辑器内的 DSH 对话窗 ↔ DSH 会话桥。在 Unity 里直接说话，DSH 侧即时被唤醒并回复；支持多工程、自动部署脚本、最近工程心跳与 MCP 服务管理。
 
-- 版本：**1.4.2**
+- 版本：**1.5.0**
 - 仓库：`https://github.com/yigeness/dsh-plugin-unity-chat`（安装：`dsh plugin add github:yigeness/dsh-plugin-unity-chat#v1.4.2`）
 - 类型：DSH bundle 插件（宿主 + Web 客户端设置页）
 - 兼容：DSH Desktop ≥ 2.0（`dsh.compatibility.dsh: ">=0.2.0-rc.1"`）；Node 22.19+ / 24+；Unity 2020.1+（仅聊天，2022.3+ 才能配合 MCP 操作场景）
@@ -265,6 +265,7 @@ Copy-Item "$src\assets\*" "$dst\assets" -Force
 | **1.4.0** | **发布合规化：移除 `private`，补 license/repository/engines/peerDependencies、locale 显示元数据与 icon；默认配置可直接激活（缺 sessionId/projects 不再报错，改为降级+提示）；UI 全部改用主题 token** |
 | **1.4.1** | **修复 volatile 配置引用未解包：projects 曾变成 `[object Object]` 并在错误目录部署脚本；新增 `unwrapConfigValue()` 与工程路径合法性校验** |
 | **1.4.2** | **安全加固：部署目标必须位于工程目录内且为 `.cs`；MCP 只允许启动 `gamedev-mcp-server.exe`；聊天文件超大时只读尾部；chatFile 禁止绝对路径/`..`；新增 `SECURITY.md`** |
+| **1.5.0** | **设置页「最近工程」每 10 秒自动刷新（接近实时）；新增 GitHub Actions CI（语法检查 + 全部单测 + 打包清单 + tag 与版本一致性校验）** |
 
 ---
 
@@ -384,3 +385,29 @@ Copy-Item "$src\assets\*" "$dst\assets" -Force
 | **不收集数据** | 无遥测、无网络上报 |
 
 发现安全问题请通过 GitHub Issues 报告（不要公开可利用细节）。
+
+---
+
+## 13. 持续集成（CI）
+
+仓库自带 `.github/workflows/ci.yml`，在 push / PR / tag 时自动运行：
+
+| Job | 内容 |
+|---|---|
+| `test` | ① 全部入口 `node --check`；② 5 个测试文件（33+ 用例）；③ `npm pack --dry-run` 校验 `files` 白名单 |
+| `tag-version` | 推送 `vX.Y.Z` tag 时校验 `package.json.version === X.Y.Z`，不一致直接失败 |
+
+特点：
+
+- **不需要安装依赖**：单测只用 Node 内置模块，CI 无需 `npm install`，速度快
+- **tag 与版本强一致**：避免"发了 tag 但版本号没改"的常见错误
+- 本地等价命令：
+
+```powershell
+node --check index.js
+node test/config.test.js
+node test/chat-file.test.js
+node test/waker.test.js
+node test/heartbeat.test.js
+node test/security.test.js
+```
