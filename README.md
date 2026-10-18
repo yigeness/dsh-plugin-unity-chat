@@ -3,6 +3,7 @@
 Unity 编辑器内的 DSH 对话窗 ↔ DSH 会话桥。在 Unity 里直接说话，DSH 侧即时被唤醒并回复；支持多工程、自动部署脚本、最近工程心跳与 MCP 服务管理。
 
 - 版本：**1.4.2**
+- 仓库：`https://github.com/yigeness/dsh-plugin-unity-chat`（安装：`dsh plugin add github:yigeness/dsh-plugin-unity-chat#v1.4.2`）
 - 类型：DSH bundle 插件（宿主 + Web 客户端设置页）
 - 兼容：DSH Desktop ≥ 2.0（`dsh.compatibility.dsh: ">=0.2.0-rc.1"`）；Node 22.19+ / 24+；Unity 2020.1+（仅聊天，2022.3+ 才能配合 MCP 操作场景）
 - 许可：MIT
@@ -37,13 +38,13 @@ Unity 编辑器内的 DSH 对话窗 ↔ DSH 会话桥。在 Unity 里直接说�
 
 ```powershell
 # 从 GitHub 仓库安装（分支默认 main）
-dsh plugin add github:<你的用户名>/dsh-plugin-unity-chat
+dsh plugin add github:yigeness/dsh-plugin-unity-chat
 
 # 或者用完整 git 地址
-dsh plugin add https://github.com/<你的用户名>/dsh-plugin-unity-chat
+dsh plugin add https://github.com/yigeness/dsh-plugin-unity-chat
 
 # 指定 tag / commit（版本锁定，推荐）
-dsh plugin add github:<你的用户名>/dsh-plugin-unity-chat#v1.4.0
+dsh plugin add github:yigeness/dsh-plugin-unity-chat#v1.4.2
 ```
 
 安装完成后按提示**重启 DSH Desktop**。
